@@ -9,7 +9,7 @@ const spanDays = document.querySelector('.timer [data-days]');
 const spanHours = document.querySelector('.timer [data-hours]');
 const spanMinutes = document.querySelector('.timer [data-minutes]');
 const spanSeconds = document.querySelector('.timer [data-seconds]');
-
+const addLeadingZero = value => String(value).padStart(2, 0)
 let selectedDate = 0;
 let timerId = null;
 
@@ -55,10 +55,10 @@ function getTimerStart() {
 
    function getTimerStop() {
     
-    if(spanDays.textContent === '0 ' && 
-      spanHours.textContent === '0' &&
-      spanMinutes.textContent === '0' &&
-      spanSeconds.textContent === '0') {
+    if(spanDays.textContent === '0' && 
+      spanHours.textContent === '00' &&
+      spanMinutes.textContent === '00' &&
+      spanSeconds.textContent === '00') {
 
         clearInterval(timerId)
       }
@@ -66,10 +66,10 @@ function getTimerStart() {
 
 
    function showDate(time) {
-    spanDays.textContent = (time.days);
-   spanHours.textContent = (time.hours);
-   spanMinutes.textContent = (time.minutes);
-   spanSeconds.textContent = (time.seconds);
+    spanDays.textContent = time.days;
+   spanHours.textContent = addLeadingZero(time.hours);
+   spanMinutes.textContent = addLeadingZero(time.minutes);
+   spanSeconds.textContent = addLeadingZero(time.seconds);
 }
 
 
